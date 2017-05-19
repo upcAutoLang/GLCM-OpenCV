@@ -18,6 +18,7 @@ http://blog.csdn.net/ajianyingxiaoqinghan/article/details/71552744
 ## 1. My Working Environment
 
 - Operating System: Ubuntu 14.04 LTS
+- OpenCV Version: 2.4.9
 - Conditions before your cmake command:
 	- have already done OpenCV's make & make install
 	- have already done CMake's make & make install
