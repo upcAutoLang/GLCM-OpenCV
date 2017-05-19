@@ -18,6 +18,7 @@ http://blog.csdn.net/ajianyingxiaoqinghan/article/details/71552744
 ## 1. 笔者的工作环境：
 
 - 操作系统：Ubuntu 14.04 LTS
+- OpenCV版本: 2.4.9
 - 编译条件：
 	- 已编译且安装OpenCV
 	- 已安装CMake
