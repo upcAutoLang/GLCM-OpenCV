@@ -27,6 +27,7 @@
  * v1.3: 完成了获取单一通道、灰度图量化为4/8/16等级的功能；
  * v1.4: 完成了整幅图像纹理特征的计算；
  * v1.5: 完成了对纹理特征图像的调整功能，并显示；
+ * v1.7: 添加了计算整幅图像的特征值函数；
 ===================================================
  */
 
@@ -39,6 +40,7 @@ int main()
     char key;
     Mat img;
     GLCM glcm;
+    TextureEValues EValues;
 
     // 程序运行时间统计变量
     // the Time Statistical Variable of Program Running Time
@@ -51,7 +53,8 @@ int main()
 
     // 读取图像
     // Read a Image
-    img = imread("../image/miska.jpg");
+    img = imread("/home/grq/miska.jpg");
+
     Mat dstChannel;
     glcm.getOneChannel(img, dstChannel, CHANNEL_B);
 
@@ -67,7 +70,18 @@ int main()
     start = static_cast<double>(getTickCount());
     glcm.CalcuTextureImages(dstChannel, imgEnergy, imgContrast, imgHomogenity, imgEntropy, 5, GRAY_8, true);
     time = ((double)getTickCount() - start) / getTickFrequency() * 1000;
+    cout << "Time of Generate the whole Image's Calculate Texture Features Image: " << time << "ms" << endl<<endl;
+
+    start = static_cast<double>(getTickCount());
+    glcm.CalcuTextureEValue(dstChannel, EValues, 5, GRAY_8);
+    time = ((double)getTickCount() - start) / getTickFrequency() * 1000;
     cout << "Time of Calculate Texture Features of the whole Image: " << time << "ms" << endl<<endl;
+
+    cout<<"Image's Texture EValues:"<<endl;
+    cout<<"    Contrast: "<<EValues.contrast<<endl;
+    cout<<"    Energy: "<<EValues.energy<<endl;
+    cout<<"    EntropyData: "<<EValues.entropy<<endl;
+    cout<<"    Homogenity: "<<EValues.homogenity<<endl;
 
     imshow("Energy", imgEnergy);
     imshow("Contrast", imgContrast);

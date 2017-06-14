@@ -91,8 +91,13 @@ public:
     void NormalizeMat(Mat src, Mat& dst);
 
     // 计算单个窗口矩阵的图像纹理特征值，包括能量、对比度、相关度、熵
-    // Calculate Texture Eigenvalues of the Window Mat, which is including Energy, Contrast, Homogenity, Entropy.
-    void CalcuTextureEValue(Mat src, TextureEValues& EValue, bool ToCheckMat = false);
+    // Calculate Texture Eigenvalues of One Window Mat, which is including Energy, Contrast, Homogenity, Entropy.
+    void CalcuOneTextureEValue(Mat src, TextureEValues& EValue, bool ToCheckMat = false);
+
+    // 计算全图的图像纹理特征值，包括能量、对比度、相关度、熵
+    // Calculate Texture Eigenvalues of One Window Mat, which is including Energy, Contrast, Homogenity, Entropy.
+    void CalcuTextureEValue(Mat src, TextureEValues& EValue,
+                            int size = 5, GrayLevel level = GRAY_8);
 
     // 计算整幅图像的纹理特征
     void CalcuTextureImages(Mat src, Mat& imgEnergy, Mat& imgContrast, Mat& imgHomogenity, Mat& imgEntropy,
